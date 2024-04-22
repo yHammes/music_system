@@ -1,1 +1,0 @@
-guiSetInputMode("no_binds_when_editing");

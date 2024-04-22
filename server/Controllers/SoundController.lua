@@ -35,13 +35,13 @@ end)
 addEventHandler("onVehicleExplode", root, function ()
     local sound = Sound.find(source)
     if sound then
-        sound:stop();
+        sound:destroy();
     end
 end)
 
 addEventHandler("onElementDestroy", root, function ()
     local sound = Sound.find(source)
     if sound then
-        sound:stop();
+        sound:destroy();
     end
 end)

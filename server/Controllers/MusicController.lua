@@ -26,32 +26,27 @@ addEventHandler("deleteMusic", resourceRoot, function(id)
     end
 end)
 
-local function playMusic(player, name, url)
-    local veh = getPedOccupiedVehicle(player);
-    local currentSound = Sound.find(veh);
-    if (currentSound) then
-        currentSound:stop();
-    end
-
-    local sound = Sound.new(veh, url);
-    sound:play()
-
-    dxMsg("Radio alterada com sucesso!", player, "info", 6)
-end
-
 addEvent("playMusic", true)
 addEventHandler("playMusic", resourceRoot, function(id)
     if (source == resourceRoot and client) then
         local music = Music:find(id);
-
-        playMusic(client, music.name, music.url)
+        music:play(client)
+        dxMsg("Radio alterada com sucesso!", client, "info", 6)
     end
 end)
 
 addEvent("playMusicFromURL", true)
 addEventHandler("playMusicFromURL", resourceRoot, function(name, url)
     if (source == resourceRoot and client) then
-        playMusic(client, name, url)
+        local veh = getPedOccupiedVehicle(client);
+        local currentSound = Sound.find(veh);
+        if (currentSound) then
+            currentSound:destroy();
+        end
+    
+        local sound = Sound.new(veh, url);
+        sound:play()
+        dxMsg("Radio alterada com sucesso!", client, "info", 6)
     end
 end)
 

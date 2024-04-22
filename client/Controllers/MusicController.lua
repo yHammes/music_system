@@ -5,6 +5,7 @@ local function openPanel(musics)
     local panelBrowser = guiGetBrowser(initBrowser)
 
     addEventHandler("onClientBrowserCreated", panelBrowser, function()
+        guiSetInputMode("no_binds_when_editing");
         loadBrowserURL(source, "http://mta/" .. getResourceName(getThisResource()) .. "/client/ui/interface.html")
     end)
 
