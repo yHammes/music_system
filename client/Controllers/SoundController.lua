@@ -19,8 +19,8 @@ addEventHandler("pauseSound_Request", resourceRoot, function(element)
     setSoundPaused(sounds[element], true)
 end)
 
-addEvent("stopSound_Request", true)
-addEventHandler("stopSound_Request", resourceRoot, function(element)
+addEvent("destroySound_Request", true)
+addEventHandler("destroySound_Request", resourceRoot, function(element)
     destroyElement(sounds[element]);
     sounds[element] = nil;
 end)

@@ -69,10 +69,4 @@ addEventHandler("onPlayerResourceStart", root, function(resource)
         bindKey(source, "mouse_wheel_down", "down", toggleVolume)
     end
 end)
-
-addCommandHandler("setradio", function(player)
-    playSoundFrontEnd(player, 4)
-    outputChatBox("Pressione F5 para colocar musicas", player, 255, 0, 0, true)
-end)
-
 -- by ymaaster

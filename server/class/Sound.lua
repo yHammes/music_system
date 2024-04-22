@@ -27,7 +27,7 @@ function Sound:pause()
 end
 
 function Sound:destroy()
-    triggerClientEvent("stopSound_Request", resourceRoot, self.element);
+    triggerClientEvent("destroySound_Request", resourceRoot, self.element);
     instances[self.element] = nil;
     self = nil;
 end
