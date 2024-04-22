@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../lib/bootstrap/bootstrap.min.css">
+    <title>Save Music | yMaaster</title>
+
+    <script>
+        function playMusicFromURL() {
+            const name = document.getElementById("name").value;
+            const url = document.getElementById("url").value;
+            mta.triggerEvent("playMusicFromURL", name, url)
+        }
+        function saveMusic() {
+            const name = document.getElementById("name").value;
+            const url = document.getElementById("url").value;
+            mta.triggerEvent("saveMusic", name, url)
+        }
+        function deleteMusic(id) {
+            mta.triggerEvent("deleteMusic", id)
+        }
+        function playMusic(id) {
+            mta.triggerEvent("playMusic", id)
+        }
+
+    </script>
+
+    <style>
+        body {
+            background: transparent;
+        }
+
+        .item:hover {
+            background-color: rgb(50 56 62);
+        }
+
+        .texts {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body class="db-transparent d-flex justify-content-center align-items-center" style="height: 100vh; user-select: none;">
+    <div class="card card-body text-center bg-dark text-white" style="max-width: 60%;">
+        <div class="mb-5">
+            <h1>Sistema de músicas | GFB </h1>
+            <h5 class="text-muted">Salve e toque suas musicas favoritas</h5>
+        </div>
+
+        <form onsubmit="saveMusic()">
+            <div class="d-flex mb-5">
+                <input class="form-control mx-1" type="text" id="name" placeholder="Nome..."
+                    oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe um nome')" required>
+                <input class="form-control mx-1" type="url" id="url" placeholder="Url..."
+                    oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe uma URL Válida!')" required>
+                <button class="btn btn-success mx-1">Salvar</button>
+                <button type="button" onclick="playMusicFromURL()" class="btn btn-success">Tocar</button>
+            </div>
+        </form>
+
+        <div class="list-group overflow-y-auto shadow-lg items"
+            style="max-height: 330px; overflow-x: hidden; user-select: auto;">
+            <!-- Botões seram exibidos aqui -->
+        </div>
+    </div>
+</body>
+
+</html>

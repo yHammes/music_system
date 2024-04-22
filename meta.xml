@@ -1,0 +1,29 @@
+<meta>
+  <info author="yMaaster" name="SaveMusics" description="Sistema para salvar url's de musicas"/>
+
+  <script src="config.lua" type="shared"/>
+  <script src="framework/server/class/Model.lua" type="server"/>
+  <script src="framework/server/util.lua" type="server"/>
+
+
+  <script src="client/main.lua" type="client" cache="false" />
+  <script src="client/utils.lua" type="client" cache="false" />
+
+
+  <script src="client/Controllers/MusicController.lua" type="client" cache="false" />
+  <script src="client/Controllers/SoundController.lua" type="client" cache="false" />
+
+  <script src="server/main.lua" type="server"/>
+  <script src="server/migrations.lua" type="server"/>
+
+  <script src="server/class/Sound.lua" type="server"/>
+
+  <script src="server/Controllers/MusicController.lua" type="server"/>
+  <script src="server/Controllers/SoundController.lua" type="server"/>
+  <script src="server/Models/Music.lua" type="server"/>
+
+
+  <file src="lib/bootstrap/bootstrap.min.css"/>
+  <file src="client/ui/interface.html"/>
+  
+</meta>
