@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../lib/bootstrap/bootstrap.min.css">
-    <title>Save Music | yMaaster</title>
+    <title>Music Panel | yMaaster</title>
 
     <script>
         function playMusicFromURL() {
@@ -12,37 +12,35 @@
             const url = document.getElementById("url").value;
             mta.triggerEvent("playMusicFromURL", name, url)
         }
+
         function saveMusic() {
             const name = document.getElementById("name").value;
             const url = document.getElementById("url").value;
             mta.triggerEvent("saveMusic", name, url)
         }
+
         function deleteMusic(id) {
             mta.triggerEvent("deleteMusic", id)
         }
+
         function playMusic(id) {
             mta.triggerEvent("playMusic", id)
         }
-
     </script>
 
     <style>
-        body {
-            background: transparent;
-        }
-
         .item:hover {
             background-color: rgb(50 56 62);
         }
 
+        /* Usado nos botões */
         .texts {
             white-space: nowrap;
-            overflow: hidden;
         }
     </style>
 </head>
 
-<body class="db-transparent d-flex justify-content-center align-items-center" style="height: 100vh; user-select: none;">
+<body class="bg-transparent d-flex justify-content-center align-items-center" style="height: 100vh; user-select: none;">
     <div class="card card-body text-center bg-dark text-white" style="max-width: 60%;">
         <div class="mb-5">
             <h1>Sistema de músicas | GFB </h1>
@@ -60,8 +58,7 @@
             </div>
         </form>
 
-        <div class="list-group overflow-y-auto shadow-lg items"
-            style="max-height: 330px; overflow-x: hidden; user-select: auto;">
+        <div class="list-group overflow-auto shadow-lg items" style="max-height: 330px; user-select: auto;">
             <!-- Botões seram exibidos aqui -->
         </div>
     </div>

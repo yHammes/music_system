@@ -7,8 +7,7 @@ addEventHandler("saveMusic", resourceRoot, function(name, url)
             url = url
         });
 
-        triggerClientEvent(client, "reloadMusicPanel", resourceRoot,
-            Music:where('acc', getAccountName(getPlayerAccount(client))))
+        triggerClientEvent(client, "reloadMusicPanel", resourceRoot, Music:where('acc', getAccountName(getPlayerAccount(client))))
             
         dxMsg("Musica salva com sucesso!", client, "info", 6)
     end
@@ -21,8 +20,7 @@ addEventHandler("deleteMusic", resourceRoot, function(id)
         music:delete();
         dxMsg("Musica deletada!", client, "info", 6)
 
-        triggerClientEvent(client, "reloadMusicPanel", resourceRoot,
-            Music:where('acc', getAccountName(getPlayerAccount(client))))
+        triggerClientEvent(client, "reloadMusicPanel", resourceRoot, Music:where('acc', getAccountName(getPlayerAccount(client))))
     end
 end)
 
@@ -69,4 +67,5 @@ addEventHandler("onPlayerResourceStart", root, function(resource)
         bindKey(source, "mouse_wheel_down", "down", toggleVolume)
     end
 end)
+
 -- by ymaaster

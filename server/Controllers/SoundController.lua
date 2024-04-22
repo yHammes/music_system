@@ -59,3 +59,5 @@ addCommandHandler("setradio", function(player, _, url)
         dxMsg("Radio alterada com sucesso!", player, "info", 6)
     end
 end)
+
+--by ymaaster
