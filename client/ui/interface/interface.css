@@ -5,4 +5,5 @@
 /* Usado nos botões */
 .texts {
     white-space: nowrap;
+    overflow: hidden;
 }
