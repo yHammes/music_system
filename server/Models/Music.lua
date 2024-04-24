@@ -8,13 +8,13 @@ Music.fillable = {"id", "created_at", "acc", "name", "url"};
 
 function Music:play(player)
     local veh = getPedOccupiedVehicle(player);
-    local currentSound = Sound.find(veh);
-    if (currentSound) then
-        currentSound:destroy();
+    local currentRadio = Radio.find(veh);
+    if (currentRadio) then
+        currentRadio:destroy();
     end
 
-    local sound = Sound.new(veh, self.url);
-    sound:play()
+    local radio = Radio.new(veh, self.url);
+    radio:play()
 end
 
 -- function Music:stop()

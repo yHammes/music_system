@@ -11,15 +11,15 @@
 
 
   <script src="client/Controllers/MusicController.lua" type="client" cache="false" />
-  <script src="client/Controllers/SoundController.lua" type="client" cache="false" />
+  <script src="client/Controllers/RadioController.lua" type="client" cache="false" />
 
   <script src="server/main.lua" type="server"/>
   <script src="server/migrations.lua" type="server"/>
 
-  <script src="server/class/Sound.lua" type="server"/>
+  <script src="server/class/Radio.lua" type="server"/>
 
   <script src="server/Controllers/MusicController.lua" type="server"/>
-  <script src="server/Controllers/SoundController.lua" type="server"/>
+  <script src="server/Controllers/RadioController.lua" type="server"/>
   <script src="server/Models/Music.lua" type="server"/>
 
 

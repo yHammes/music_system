@@ -1,10 +1,13 @@
 Config = {
     bind = "F5",
     command = "mymusics",
-    sound = {
+    radio = {
+        command = "setradio",
+        toggleRadio = "R",
+        initialRadio = "https://live.hunter.fm/pop_normal",
         volume = {
             default = 1,
-            min = 0.1,
+            min = 0,
             max = 2
         },
     },
@@ -15,11 +18,11 @@ Config = {
 }
 
 --Mensagens:
-function dxMsg(msg, player, type, sound)
+function dxMsg(msg, player, type, radio)
     if (localPlayer) then
-        return triggerEvent("dxNotification", resourceRoot, msg, type, sound) --client
+        return triggerEvent("dxNotification", resourceRoot, msg, type, radio) --client
     end
-    triggerClientEvent(player, "dxNotification", resourceRoot, msg, type, sound) --server
+    triggerClientEvent(player, "dxNotification", resourceRoot, msg, type, radio) --server
 end
 
 --[[

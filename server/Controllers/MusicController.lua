@@ -37,13 +37,13 @@ addEvent("playMusicFromURL", true)
 addEventHandler("playMusicFromURL", resourceRoot, function(name, url)
     if (source == resourceRoot and client) then
         local veh = getPedOccupiedVehicle(client);
-        local currentSound = Sound.find(veh);
-        if (currentSound) then
-            currentSound:destroy();
+        local currentRadio = Radio.find(veh);
+        if (currentRadio) then
+            currentRadio:destroy();
         end
     
-        local sound = Sound.new(veh, url);
-        sound:play()
+        local radio = Radio.new(veh, url);
+        radio:play()
         dxMsg("Radio alterada com sucesso!", client, "info", 6)
     end
 end)
@@ -53,12 +53,12 @@ addEventHandler("onPlayerResourceStart", root, function(resource)
         local function toggleVolume(player, key)
             local veh = getPedOccupiedVehicle(player)
             if veh then
-                local sound = Sound.find(veh);
-                if sound then
+                local radio = Radio.find(veh);
+                if radio then
                     if key == "mouse_wheel_up" then
-                        sound:toggleVolume("up")
+                        radio:toggleVolume("up")
                     else
-                        sound:toggleVolume("down")
+                        radio:toggleVolume("down")
                     end
                 end
             end
