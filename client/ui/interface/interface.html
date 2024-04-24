@@ -3,41 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../lib/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../lib/bootstrap/bootstrap.min.css">
     <title>Music Panel | yMaaster</title>
-
-    <script>
-        function playMusicFromURL() {
-            const name = document.getElementById("name").value;
-            const url = document.getElementById("url").value;
-            mta.triggerEvent("playMusicFromURL", name, url)
-        }
- 
-        function saveMusic() {
-            const name = document.getElementById("name").value;
-            const url = document.getElementById("url").value;
-            mta.triggerEvent("saveMusic", name, url)
-        }
-
-        function deleteMusic(id) {
-            mta.triggerEvent("deleteMusic", id)
-        }
-
-        function playMusic(id) {
-            mta.triggerEvent("playMusic", id)
-        }
-    </script>
-
-    <style>
-        .item:hover {
-            background-color: rgb(50 56 62);
-        }
- 
-        /* Usado nos botões */
-        .texts { 
-            white-space: nowrap;
-        }
-    </style>
+    <link rel="stylesheet" href="interface.css">
 </head>
 
 <body class="bg-transparent d-flex justify-content-center align-items-center" style="height: 100vh; user-select: none;">
@@ -61,7 +29,10 @@
         <div class="list-group overflow-auto shadow-lg items" style="max-height: 330px; user-select: auto;">
             <!-- Botões seram exibidos aqui -->
         </div>
+        
     </div>
+
+    <script src="interface.js"></script>
 </body>
 
 </html>
