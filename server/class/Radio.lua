@@ -38,9 +38,7 @@ function Radio:toggleVolume(state)
     elseif (state == "down" and self.volume > Config.radio.volume.min) then
         self.volume = self.volume - 0.1
     end
-    triggerClientEvent("toggleVolumeRadio_Request", resourceRoot, self.element, self.volume);
-    print(self.volume)
-    
+    triggerClientEvent("toggleVolumeRadio_Request", resourceRoot, self.element, self.volume);    
 end
 
 function Radio.find(element)
