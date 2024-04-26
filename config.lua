@@ -1,6 +1,10 @@
 Config = {
-    bind = "F5",
-    command = "mymusics",
+    Panel = {
+        bind = "F5",
+        command = "mymusics",
+
+        nameLimitCharacters = 60;
+    },
     radio = {
         command = "setradio",
         toggleRadio = "R",
@@ -11,13 +15,9 @@ Config = {
             max = 2
         },
     },
-
-    saveMusics = {
-        nameLimitCharacters = 60;
-    }
 }
 
---Mensagens:
+--Infobox:
 function dxMsg(msg, player, type, radio)
     if (localPlayer) then
         return triggerEvent("dxNotification", resourceRoot, msg, type, radio) --client
@@ -26,7 +26,10 @@ function dxMsg(msg, player, type, radio)
 end
 
 --[[
-    Sistema para salvar musicas
+    Sistema para salvar e tocar musicas na radio dos veiculos
 
-    Meu contato (Discord): ymaaster, Maaster#0001 ou https://discord.gg/wMkcasT
+    Autor: yMaaster
+    Contato: ymaaster, Maaster#0001 ou https://discord.gg/wMkcasT
+    
+    Github repository: https://github.com/yHammes/music_system
 ]]

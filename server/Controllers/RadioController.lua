@@ -1,4 +1,4 @@
-local function startAllRadios(player) 
+local function startAllRadios(player)
     local radios = Radio.getAll();
     for _, radio in pairs(radios) do
         if radio.state == "playing" then
@@ -27,37 +27,55 @@ end
 
 addEventHandler("onPlayerResourceStart", root, function(resource)
     if (resource == getThisResource()) then
-        startAllRadios(source) 
+        startAllRadios(source)
         setRadioBind(source)
     end
 end)
 
-addEventHandler("onVehicleExplode", root, function ()
+addEventHandler("onVehicleExplode", root, function()
     local radio = Radio.find(source)
     if radio then
         radio:destroy();
     end
 end)
 
-addEventHandler("onElementDestroy", root, function ()
+addEventHandler("onElementDestroy", root, function()
     local radio = Radio.find(source)
     if radio then
         radio:destroy();
     end
 end)
 
-    addCommandHandler(Config.radio.command, function(player, _, url)
-        if (url) then
-            local veh = getPedOccupiedVehicle(player);
-            local currentRadio = Radio.find(veh);
-            if (currentRadio) then
-                currentRadio:destroy();
+addEventHandler("onPlayerResourceStart", root, function(resource)
+    if (resource == getThisResource()) then
+        local function toggleVolume(player, key)
+            local veh = getPedOccupiedVehicle(player)
+            if veh then
+                local radio = Radio.find(veh);
+                if radio then
+                    if key == "mouse_wheel_up" then
+                        radio:toggleVolume("up")
+                    else
+                        radio:toggleVolume("down")
+                    end
+                end
             end
-        
-            local radio = Radio.new(veh, url);
-            radio:play()
-            dxMsg("Radio alterada com sucesso!", player, "info", 6)
         end
-    end)
+        bindKey(source, "mouse_wheel_up", "down", toggleVolume);
+        bindKey(source, "mouse_wheel_down", "down", toggleVolume)
+    end
+end)
 
---by ymaaster
+addCommandHandler(Config.radio.command, function(player, _, url)
+    if (url) then
+        local veh = getPedOccupiedVehicle(player);
+        local currentRadio = Radio.find(veh);
+        if (currentRadio) then
+            currentRadio:destroy();
+        end
+
+        local radio = Radio.new(veh, url);
+        radio:play()
+        dxMsg("Radio alterada com sucesso!", player, "info", 6)
+    end
+end)

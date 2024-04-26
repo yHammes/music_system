@@ -9,5 +9,3 @@ dbExec(db, [[
         `url` VARCHAR(512) NOT NULL
     );
 ]])
-
---by ymaaster

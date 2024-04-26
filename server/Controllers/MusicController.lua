@@ -1,3 +1,21 @@
+local function toggleMusicPanel(player)
+    local account = getPlayerAccount(player)
+
+    if account then
+        local musics = Music:where('acc', getAccountName(account))
+        return triggerClientEvent(player, "toggleMusicPanel", resourceRoot, musics)
+    end
+    
+    dxMsg("Você deve logar para abrir este painel!", player, "error", 4)
+end
+addCommandHandler(Config.Panel.command, toggleMusicPanel)
+
+addEventHandler("onPlayerResourceStart", root, function(resource)
+    if (resource == getThisResource()) then
+        bindKey(source, Config.Panel.bind, "down", toggleMusicPanel);
+    end
+end)
+
 addEvent("saveMusic", true)
 addEventHandler("saveMusic", resourceRoot, function(name, url)
     if (source == resourceRoot and client) then
@@ -47,25 +65,3 @@ addEventHandler("playMusicFromURL", resourceRoot, function(name, url)
         dxMsg("Radio alterada com sucesso!", client, "info", 6)
     end
 end)
-
-addEventHandler("onPlayerResourceStart", root, function(resource)
-    if (resource == getThisResource()) then
-        local function toggleVolume(player, key)
-            local veh = getPedOccupiedVehicle(player)
-            if veh then
-                local radio = Radio.find(veh);
-                if radio then
-                    if key == "mouse_wheel_up" then
-                        radio:toggleVolume("up")
-                    else
-                        radio:toggleVolume("down")
-                    end
-                end
-            end
-        end
-        bindKey(source, "mouse_wheel_up", "down", toggleVolume);
-        bindKey(source, "mouse_wheel_down", "down", toggleVolume)
-    end
-end)
-
--- by ymaaster
