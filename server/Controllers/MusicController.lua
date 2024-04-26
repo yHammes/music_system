@@ -19,6 +19,12 @@ end)
 addEvent("saveMusic", true)
 addEventHandler("saveMusic", resourceRoot, function(name, url)
     if (source == resourceRoot and client) then
+        local limitCharacters = Config.Panel.nameLimitCharacters;
+
+        if (utf8.len(name) > limitCharacters) then
+            return dxMsg("Você atingiu o limite de caracteres! (" .. limitCharacters .. ")", client, "error", 4)
+        end
+
         local music = Music:create({
             acc = getAccountName(getPlayerAccount(client)),
             name = name,

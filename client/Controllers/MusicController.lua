@@ -89,12 +89,6 @@ end)
 
 addEvent("saveMusic", true)
 addEventHandler("saveMusic", resourceRoot, function(name, url)
-    local limitCharacters = Config.Panel.nameLimitCharacters;
-
-    if (string.len(name) > limitCharacters) then
-        return dxMsg("Você atingiu o limite de caracteres! (" .. limitCharacters .. ")", localPlayer, "error", 4)
-    end
-
     triggerServerEvent("saveMusic", resourceRoot, name, formatMusicURL(url));
 end)
 

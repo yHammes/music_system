@@ -1,5 +1,3 @@
---client-side
-
 function formatMusicURL(url)
     local url = url:gsub("setradio", "")
     local url = url:gsub(" ", "")
