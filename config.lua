@@ -18,11 +18,11 @@ Config = {
 }
 
 --Infobox:
-function dxMsg(msg, player, type, radio)
+function dxMsg(msg, player, type, sound)
     if (localPlayer) then
-        return triggerEvent("dxNotification", resourceRoot, msg, type, radio) --client
+        return triggerEvent("dxNotification", resourceRoot, msg, type, sound) --client
     end
-    triggerClientEvent(player, "dxNotification", resourceRoot, msg, type, radio) --server
+    triggerClientEvent(player, "dxNotification", resourceRoot, msg, type, sound) --server
 end
 
 --[[
