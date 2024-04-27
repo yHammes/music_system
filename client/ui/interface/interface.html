@@ -11,27 +11,28 @@
 <body class="bg-transparent d-flex justify-content-center align-items-center" style="height: 100vh; user-select: none;">
     <div class="card card-body text-center bg-dark text-white" style="max-width: 60%;">
         <div class="mb-5">
-            <h1>Sistema de músicas | GFB </h1>
+            <h1>Sistema de músicas </h1>
             <h5 class="text-muted">Salve e toque suas musicas favoritas</h5>
         </div>
 
         <form onsubmit="saveMusic()">
-            <div class="d-flex mb-5">
-                <input class="form-control mx-1" type="text" id="name" placeholder="Nome..."
-                    oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe um nome')" required>
-                <input class="form-control mx-1" type="url" id="url" placeholder="Url..."
-                    oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe uma URL Válida!')" required>
-                <button class="btn btn-success mx-1">Salvar</button>
-                <button type="button" onclick="playMusicFromURL()" class="btn btn-success">Tocar</button>
+            <div class="row">
+                <div class="col-12 d-flex flex-row mb-3">
+                    <input class="form-control mx-2" type="url" id="url" placeholder="Url..." oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe uma URL Válida!')" required>
+                    <button class="btn btn-success" type="button" onclick="playMusicFromURL()">Tocar</button>
+                </div>
+                <div class="col-12 d-flex flex-row">
+                    <input class="form-control mx-2" type="text" id="name" placeholder="Nome..." oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe um nome')" required>
+                    <button class="btn btn-success">Salvar</button>
+                </div>
             </div>
         </form>
 
-        <div class="list-group overflow-y-auto shadow-lg items" style="max-height: 330px; user-select: auto; overflow-x: hidden;">
+        <div class="list-group overflow-y-auto shadow-lg items mt-3"
+            style="max-height: 330px; user-select: auto; overflow-x: hidden;">
             <!-- Botões seram exibidos aqui -->
         </div>
-        
     </div>
-
     <script src="interface.js"></script>
 </body>
 
