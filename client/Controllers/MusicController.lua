@@ -102,7 +102,7 @@ addEventHandler("playMusic", resourceRoot, function(id)
     if isPedInVehicle(localPlayer) then
         return triggerServerEvent("playMusic", resourceRoot, id);
     end
-    return dxMsg("Você precisa de um veiculo!", localPlayer, "error", 4);
+    return dxMsg("Você precisa de um veiculo!!", localPlayer, "error", 4);
 end)
 
 addEvent("playMusicFromURL", true)
