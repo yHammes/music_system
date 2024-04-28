@@ -58,7 +58,7 @@ addEventHandler("playMusic", resourceRoot, function(id)
 end)
 
 addEvent("playMusicFromURL", true)
-addEventHandler("playMusicFromURL", resourceRoot, function(name, url)
+addEventHandler("playMusicFromURL", resourceRoot, function(url)
     if (source == resourceRoot and client) then
         local veh = getPedOccupiedVehicle(client);
         local currentRadio = Radio.find(veh);

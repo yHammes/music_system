@@ -5,6 +5,7 @@
   <script src="framework/server/class/Model.lua" type="server"/>
   <script src="framework/server/util.lua" type="server"/>
   <file src="lib/bootstrap/bootstrap.min.css"/>
+  <file src="lib/bootstrap/bootstrap.min.js"/>
 
 
   <script src="client/main.lua" type="client" cache="false" />

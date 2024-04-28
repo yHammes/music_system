@@ -23,7 +23,7 @@ local function openPanel(musics)
 
                 var urlItem = document.createElement("span");
                 urlItem.textContent = "(]] ..  music.url .. [[)";
-                urlItem.classList.add("text-muted", "mx-2");
+                urlItem.classList.add("text-secondary", "mx-2");
                 
                 textDiv.appendChild(textItem);
                 textDiv.appendChild(urlItem);
@@ -106,7 +106,7 @@ addEventHandler("playMusic", resourceRoot, function(id)
 end)
 
 addEvent("playMusicFromURL", true)
-addEventHandler("playMusicFromURL", resourceRoot, function(name, url)
+addEventHandler("playMusicFromURL", resourceRoot, function(url)
     if not isPedInVehicle(localPlayer) then
         return dxMsg("Você precisa de um veiculo!", localPlayer, "error", 4)
     end
@@ -114,5 +114,5 @@ addEventHandler("playMusicFromURL", resourceRoot, function(name, url)
         return dxMsg("Informe uma URL válida!", localPlayer, "error", 4)
     end
 
-    return triggerServerEvent("playMusicFromURL", resourceRoot, name, formatMusicURL(url));
+    return triggerServerEvent("playMusicFromURL", resourceRoot, formatMusicURL(url));
 end)

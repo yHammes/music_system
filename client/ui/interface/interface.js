@@ -1,7 +1,6 @@
 function playMusicFromURL() {
-    const name = document.getElementById("name").value;
-    const url = document.getElementById("url").value;
-    mta.triggerEvent("playMusicFromURL", name, url)
+    const url = document.getElementById("play_from_url").value;
+    mta.triggerEvent("playMusicFromURL", url)
 }
 
 function saveMusic() {

@@ -12,28 +12,57 @@
     <div class="card card-body text-center bg-dark text-white" style="max-width: 60%;">
         <div class="mb-5">
             <h1>Sistema de músicas </h1>
-            <h5 class="text-muted">Salve e toque suas musicas favoritas</h5>
+            <h5 class="text-secondary">Salve e toque suas musicas favoritas</h5>
         </div>
 
-        <form onsubmit="saveMusic()">
-            <div class="row">
-                <div class="col-12 d-flex flex-row mb-3">
-                    <input class="form-control mx-2" type="url" id="url" placeholder="Url..." oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe uma URL Válida!')" required>
-                    <button class="btn btn-success" type="button" onclick="playMusicFromURL()">Tocar</button>
-                </div>
-                <div class="col-12 d-flex flex-row">
-                    <input class="form-control mx-2" type="text" id="name" placeholder="Nome..." oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe um nome')" required>
-                    <button class="btn btn-success">Salvar</button>
-                </div>
+        <div class="row">
+            <div class="col-12 d-flex flex-row mb-3">
+                <input class="form-control mx-2" type="url" id="play_from_url" placeholder="Url..." oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe uma URL Válida!')" required>
+                <button class="btn btn-success" type="button" onclick="playMusicFromURL()">Tocar</button>
             </div>
-        </form>
+        </div>
 
         <div class="list-group overflow-y-auto shadow-lg items mt-3"
             style="max-height: 330px; user-select: auto; overflow-x: hidden;">
             <!-- Botões seram exibidos aqui -->
         </div>
+
+        <!-- Button trigger modal -->
+        <div>
+            <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#save_modal">
+                Salvar nova musica
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="save_modal" tabindex="-1" aria-labelledby="save_modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark form-control">
+                    <!-- <div class="modal-header"> -->
+                        <h5 class="modal-title" id="save_modalLabel">Salvar musica</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- </div> -->
+                    <form onsubmit="saveMusic()">
+                        <div class="modal-body">
+                            <div class="d-flex flex-column gap-2">
+                                <input class="form-control" type="text" id="name" placeholder="Nome..." oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe um nome')" required>
+                                <input class="form-control" type="url" id="url" placeholder="Url..." oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe uma URL Válida!')" required>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between m-3">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
     </div>
+
     <script src="interface.js"></script>
+    <script src="../../../lib/bootstrap/bootstrap.min.js"></script>
 </body>
 
 </html>
