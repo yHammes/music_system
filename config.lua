@@ -14,9 +14,12 @@ Config = {
             min = 0,
             max = 2
         },
+        distance = {
+            min = 2,
+            max = 40
+        },
     },
 }
-
 --Infobox:
 function dxMsg(msg, player, type, sound)
     if (localPlayer) then

@@ -7,6 +7,10 @@ function Radio.new(element, url)
     local data = {
         element = element,
         volume = 1,
+        distance = {
+            min = Config.radio.distance.min, 
+            max = Config.radio.distance.max
+        },
         state = "stopped",
         url = url
     }
@@ -19,7 +23,7 @@ end
 function Radio:toggle()
     self.state = self.state == "playing" and "stopped" or "playing";
 
-    triggerClientEvent("toggleRadio_Request", resourceRoot, self.element, self.url, self.state);
+    triggerClientEvent("toggleRadio_Request", resourceRoot, self);
 end
 
 function Radio:destroy()
