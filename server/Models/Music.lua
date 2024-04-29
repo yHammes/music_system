@@ -14,7 +14,7 @@ function Music:play(player)
     end
 
     local radio = Radio.new(veh, self.url);
-    radio:play()
+    radio:toggle()
 end
 
 -- function Music:stop()

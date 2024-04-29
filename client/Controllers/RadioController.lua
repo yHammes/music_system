@@ -1,9 +1,9 @@
 local radios = {}
 
-addEvent("playRadio_Request", true)
-addEventHandler("playRadio_Request", resourceRoot, function(element, url)
-    if radios[element] then
-        return setSoundPaused(radios[element], false)
+addEvent("toggleRadio_Request", true)
+addEventHandler("toggleRadio_Request", resourceRoot, function(element, url, state)
+    if (state == "stopped") then
+        return destroyElement(radios[element], false)
     end
     
     local x, y, z = getElementPosition(element)
@@ -12,11 +12,6 @@ addEventHandler("playRadio_Request", resourceRoot, function(element, url)
     setSoundMaxDistance(radio, 40)
     attachElements(radio, element)
     radios[element] = radio
-end)
-
-addEvent("pauseRadio_Request", true)
-addEventHandler("pauseRadio_Request", resourceRoot, function(element)
-    setSoundPaused(radios[element], true)
 end)
 
 addEvent("destroyRadio_Request", true)

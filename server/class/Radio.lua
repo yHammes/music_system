@@ -7,7 +7,7 @@ function Radio.new(element, url)
     local data = {
         element = element,
         volume = 1,
-        state = "paused",
+        state = "stopped",
         url = url
     }
 
@@ -16,18 +16,16 @@ function Radio.new(element, url)
     return data;
 end
 
-function Radio:play()
-    triggerClientEvent("playRadio_Request", resourceRoot, self.element, self.url);
-    self.state = "playing";
-end
+function Radio:toggle()
+    self.state = self.state == "playing" and "stopped" or "playing";
 
-function Radio:pause()
-    triggerClientEvent("pauseRadio_Request", resourceRoot, self.element);
-    self.state = "paused";
+    triggerClientEvent("toggleRadio_Request", resourceRoot, self.element, self.url, self.state);
 end
 
 function Radio:destroy()
-    triggerClientEvent("destroyRadio_Request", resourceRoot, self.element);
+    if (self.state == "playing") then
+        triggerClientEvent("destroyRadio_Request", resourceRoot, self.element);
+    end
     instances[self.element] = nil;
     self = nil;
 end
