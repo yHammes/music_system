@@ -53,9 +53,9 @@ addEventHandler("onPlayerResourceStart", root, function(resource)
                 local radio = Radio.find(veh);
                 if radio then
                     if key == "mouse_wheel_up" then
-                        radio:toggleVolume("up")
+                        radio:toggleVolume(player, "up")
                     else
-                        radio:toggleVolume("down")
+                        radio:toggleVolume(player, "down")
                     end
                 end
             end

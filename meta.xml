@@ -24,6 +24,8 @@
   <script src="server/Controllers/RadioController.lua" type="server"/>
   <script src="server/Models/Music.lua" type="server"/>
 
+  <script src="client/ui/radio/volume.lua" type="client"/>
+
   <file src="client/ui/interface/interface.css"/>
   <file src="client/ui/interface/interface.html"/>
   <file src="client/ui/interface/interface.js"/>

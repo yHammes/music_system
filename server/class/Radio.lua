@@ -30,7 +30,7 @@ function Radio:destroy()
     self = nil;
 end
 
-function Radio:toggleVolume(state)
+function Radio:toggleVolume(player, state)
     if (self.state == "playing") then
         local volumeMax = Config.radio.volume.max;
         if (state == "up" and self.volume <= volumeMax) then
@@ -39,6 +39,7 @@ function Radio:toggleVolume(state)
             self.volume = self.volume - volumeMax / 100
         end
         triggerClientEvent("toggleVolumeRadio_Request", resourceRoot, self);
+        triggerClientEvent(player, "dxVolume", resourceRoot, self.volume);
     end
 end
 
