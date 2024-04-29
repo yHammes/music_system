@@ -10,9 +10,7 @@ Config = {
         toggleRadio = "R",
         initialRadio = "https://live.hunter.fm/pop_normal",
         volume = {
-            default = 1,
-            min = 0,
-            max = 2
+            max = 5,
         },
         distance = {
             min = 2,

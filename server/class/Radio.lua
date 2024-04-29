@@ -32,12 +32,13 @@ end
 
 function Radio:toggleVolume(state)
     if (self.state == "playing") then
-        if (state == "up" and self.volume < Config.radio.volume.max) then
-            self.volume = self.volume + 0.1
-        elseif (state == "down" and self.volume > Config.radio.volume.min) then
-            self.volume = self.volume - 0.1
+        local volumeMax = Config.radio.volume.max;
+        if (state == "up" and self.volume <= volumeMax) then
+            self.volume = self.volume + volumeMax / 100
+        elseif (state == "down" and self.volume >= 0) then
+            self.volume = self.volume - volumeMax / 100
         end
-        triggerClientEvent("toggleVolumeRadio_Request", resourceRoot, self);    
+        triggerClientEvent("toggleVolumeRadio_Request", resourceRoot, self);
     end
 end
 
