@@ -2,7 +2,7 @@ local function startAllRadios(player)
     local radios = Radio.getAll();
     for _, radio in pairs(radios) do
         if radio.state == "playing" then
-            triggerClientEvent(player, "playRadio_Request", resourceRoot, radio.element, radio.url);
+            triggerClientEvent(player, "toggleRadio_Request", resourceRoot, radio.element, radio.url);
         end
     end
 end
@@ -15,12 +15,11 @@ local function setRadioBind(player)
             if not radio then
                 radio = Radio.new(veh, Config.radio.initialRadio)
             end
-            if radio.state == "paused" then
-                radio:play();
-                return dxMsg("Radio ligada!", player, "info", 1);
+            radio:toggle();
+            if radio.state == "stopped" then
+                return dxMsg("Radio desligada!", player, "info", 2);
             end
-            radio:pause();
-            dxMsg("Radio desligada!", player, "info", 2);
+            dxMsg("Radio ligada!", player, "info", 1);
         end
     end);
 end
@@ -75,7 +74,7 @@ addCommandHandler(Config.radio.command, function(player, _, url)
         end
 
         local radio = Radio.new(veh, url);
-        radio:play()
+        radio:toggle()
         dxMsg("Radio alterada com sucesso!", player, "info", 6)
     end
 end)
