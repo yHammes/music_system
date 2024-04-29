@@ -16,7 +16,7 @@ Config = {
         },
         distance = {
             min = 2,
-            max = 40
+            max = 40 -- Este valor aumenta com base no volume
         },
     },
 }

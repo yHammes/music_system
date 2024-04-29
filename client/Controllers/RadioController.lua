@@ -8,8 +8,8 @@ addEventHandler("toggleRadio_Request", resourceRoot, function(radio)
     
     local x, y, z = getElementPosition(radio.element)
     local sound = playSound3D(radio.url, x, y, z, true)
-    setSoundMinDistance(sound, radio.distance.min)
-    setSoundMaxDistance(sound, radio.distance.max)
+    setSoundMinDistance(sound, Config.radio.distance.min)
+    setSoundMaxDistance(sound, Config.radio.distance.max)
     attachElements(sound, radio.element)
     radios[radio.element] = sound
 end)
@@ -21,8 +21,9 @@ addEventHandler("destroyRadio_Request", resourceRoot, function(element)
 end)
 
 addEvent("toggleVolumeRadio_Request", true)
-addEventHandler("toggleVolumeRadio_Request", resourceRoot, function(element, volume)
-    setSoundVolume(radios[element], volume)
+addEventHandler("toggleVolumeRadio_Request", resourceRoot, function(radio)
+    setSoundVolume(radios[radio.element], radio.volume)
+    setSoundMaxDistance(radios[radio.element], radio.volume * Config.radio.distance.max)
 end)
 
 addEventHandler("onClientSoundStream", resourceRoot, function(success, length)

@@ -7,10 +7,6 @@ function Radio.new(element, url)
     local data = {
         element = element,
         volume = 1,
-        distance = {
-            min = Config.radio.distance.min, 
-            max = Config.radio.distance.max
-        },
         state = "stopped",
         url = url
     }
@@ -41,7 +37,7 @@ function Radio:toggleVolume(state)
         elseif (state == "down" and self.volume > Config.radio.volume.min) then
             self.volume = self.volume - 0.1
         end
-        triggerClientEvent("toggleVolumeRadio_Request", resourceRoot, self.element, self.volume);    
+        triggerClientEvent("toggleVolumeRadio_Request", resourceRoot, self);    
     end
 end
 
