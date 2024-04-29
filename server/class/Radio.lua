@@ -31,12 +31,14 @@ function Radio:destroy()
 end
 
 function Radio:toggleVolume(state)
-    if (state == "up" and self.volume < Config.radio.volume.max) then
-        self.volume = self.volume + 0.1
-    elseif (state == "down" and self.volume > Config.radio.volume.min) then
-        self.volume = self.volume - 0.1
+    if (self.state == "playing") then
+        if (state == "up" and self.volume < Config.radio.volume.max) then
+            self.volume = self.volume + 0.1
+        elseif (state == "down" and self.volume > Config.radio.volume.min) then
+            self.volume = self.volume - 0.1
+        end
+        triggerClientEvent("toggleVolumeRadio_Request", resourceRoot, self.element, self.volume);    
     end
-    triggerClientEvent("toggleVolumeRadio_Request", resourceRoot, self.element, self.volume);    
 end
 
 function Radio.find(element)
