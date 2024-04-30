@@ -13,7 +13,7 @@ Config = {
             max = 5,
         },
         distance = {
-            multipler = 20 -- Este valor aumenta com base no volume
+            multipler = 25 -- Este valor aumenta com base no volume
         },
     },
 }
