@@ -6,7 +6,7 @@ local instances = {}
 function Radio.new(element, url)
     local data = {
         element = element,
-        volume = 1,
+        volume = 1.5,
         state = "stopped",
         url = url
     }

@@ -8,8 +8,8 @@ addEventHandler("toggleRadio_Request", resourceRoot, function(radio)
     
     local x, y, z = getElementPosition(radio.element)
     local sound = playSound3D(radio.url, x, y, z, true)
-    setSoundMinDistance(sound, 1)
-    setSoundMaxDistance(sound, Config.radio.distance.multipler)
+    setSoundMinDistance(sound, radio.volume)
+    setSoundMaxDistance(sound, radio.volume * Config.radio.distance.multipler)
     attachElements(sound, radio.element)
     radios[radio.element] = sound
 end)
