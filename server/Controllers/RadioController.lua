@@ -2,7 +2,7 @@ local function startAllRadios(player)
     local radios = Radio.getAll();
     for _, radio in pairs(radios) do
         if radio.state == "playing" then
-            triggerClientEvent(player, "toggleRadio_Request", resourceRoot, radio.element, radio.url);
+            triggerClientEvent(player, "toggleRadio_Request", resourceRoot, radio);
         end
     end
 end
