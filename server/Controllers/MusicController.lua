@@ -71,7 +71,7 @@ addEventHandler("playMusicFromURL", resourceRoot, function(url)
     
         local radio = Radio.new(veh, url);
         radio:toggle()
-        log(getPlayerName(client).." Esta tocando: " .. music.url)
+        log(getPlayerName(client).." Esta tocando: " .. url)
         dxMsg("Radio alterada com sucesso!", client, "info", 6)
     end
 end)
