@@ -6,7 +6,7 @@ local instances = {}
 function Radio.new(element, url)
     local data = {
         element = element,
-        volume = 1,
+        volume = 1.5,
         state = "stopped",
         url = url
     }
@@ -19,7 +19,7 @@ end
 function Radio:toggle()
     self.state = self.state == "playing" and "stopped" or "playing";
 
-    triggerClientEvent("toggleRadio_Request", resourceRoot, self.element, self.url, self.state);
+    triggerClientEvent("toggleRadio_Request", resourceRoot, self);
 end
 
 function Radio:destroy()
@@ -30,14 +30,16 @@ function Radio:destroy()
     self = nil;
 end
 
-function Radio:toggleVolume(state)
+function Radio:toggleVolume(player, state)
     if (self.state == "playing") then
-        if (state == "up" and self.volume < Config.radio.volume.max) then
-            self.volume = self.volume + 0.1
-        elseif (state == "down" and self.volume > Config.radio.volume.min) then
-            self.volume = self.volume - 0.1
+        local volumeMax = Config.radio.volume.max;
+        if (state == "up" and self.volume <= volumeMax) then
+            self.volume = self.volume + volumeMax / 100
+        elseif (state == "down" and self.volume >= 0) then
+            self.volume = self.volume - volumeMax / 100
         end
-        triggerClientEvent("toggleVolumeRadio_Request", resourceRoot, self.element, self.volume);    
+        triggerClientEvent("toggleVolumeRadio_Request", resourceRoot, self);
+        triggerClientEvent(player, "dxVolume", resourceRoot, self.volume);
     end
 end
 

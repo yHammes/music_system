@@ -2,7 +2,7 @@ local function startAllRadios(player)
     local radios = Radio.getAll();
     for _, radio in pairs(radios) do
         if radio.state == "playing" then
-            triggerClientEvent(player, "toggleRadio_Request", resourceRoot, radio.element, radio.url);
+            triggerClientEvent(player, "toggleRadio_Request", resourceRoot, radio);
         end
     end
 end
@@ -53,9 +53,9 @@ addEventHandler("onPlayerResourceStart", root, function(resource)
                 local radio = Radio.find(veh);
                 if radio then
                     if key == "mouse_wheel_up" then
-                        radio:toggleVolume("up")
+                        radio:toggleVolume(player, "up")
                     else
-                        radio:toggleVolume("down")
+                        radio:toggleVolume(player, "down")
                     end
                 end
             end

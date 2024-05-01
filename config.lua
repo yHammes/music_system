@@ -10,13 +10,13 @@ Config = {
         toggleRadio = "R",
         initialRadio = "https://live.hunter.fm/pop_normal",
         volume = {
-            default = 1,
-            min = 0,
-            max = 2
+            max = 5,
+        },
+        distance = {
+            multipler = 25 -- Este valor aumenta com base no volume
         },
     },
 }
-
 --Infobox:
 function dxMsg(msg, player, type, sound)
     if (localPlayer) then

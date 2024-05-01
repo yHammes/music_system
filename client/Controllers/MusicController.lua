@@ -1,76 +1,87 @@
 local initBrowser
+local panelBrowser
 
-local function openPanel(musics)
+addEventHandler("onClientResourceStart", resourceRoot, function()
     initBrowser = guiCreateBrowser(0, 0, 1, 1, true, true, true)
-    local panelBrowser = guiGetBrowser(initBrowser)
+    panelBrowser = guiGetBrowser(initBrowser)
+    guiSetVisible(initBrowser, false)
 
     addEventHandler("onClientBrowserCreated", panelBrowser, function()
         guiSetInputMode("no_binds_when_editing");
-        loadBrowserURL(source, "http://mta/" .. getResourceName(getThisResource()) .. "/client/ui/interface/interface.html")
+        loadBrowserURL(source,
+            "http://mta/" .. getResourceName(getThisResource()) .. "/client/ui/interface/interface.html")
     end)
+end)
 
-    addEventHandler("onClientBrowserDocumentReady", panelBrowser, function()
-        for _, music in ipairs(musics) do
-            executeBrowserJavascript(source, [[
-                var itemDiv = document.createElement("div");
-                itemDiv.classList.add("d-flex", "align-items-center", "justify-content-between", "p-3", "item");
-                
-                var textDiv = document.createElement("div");
-                textDiv.classList.add("d-flex", "texts");
+local function openPanel(musics)
+    guiSetVisible(initBrowser, true)
+    executeBrowserJavascript(panelBrowser, [[
+        var itemsDiv = document.querySelector(".items");
+            
+        while (itemsDiv.firstChild) {
+            itemsDiv.removeChild(itemsDiv.firstChild);
+        }
+    ]])
 
-                var textItem = document.createElement("li");
-                textItem.textContent = "]] .. music.name .. [[";
+    for _, music in ipairs(musics) do
+        executeBrowserJavascript(panelBrowser, [[
+            var itemDiv = document.createElement("div");
+            itemDiv.classList.add("d-flex", "align-items-center", "justify-content-between", "p-3", "item");
+            
+            var textDiv = document.createElement("div");
+            textDiv.classList.add("d-flex", "texts");
 
-                var urlItem = document.createElement("span");
-                urlItem.textContent = "(]] ..  music.url .. [[)";
-                urlItem.classList.add("text-secondary", "mx-2");
-                
-                textDiv.appendChild(textItem);
-                textDiv.appendChild(urlItem);
-                
+            var textItem = document.createElement("li");
+            textItem.textContent = "]] .. music.name .. [[";
 
-                var buttonDiv = document.createElement("div");
-                buttonDiv.classList.add("d-flex");
-                
-                var playButton = document.createElement("button");
-                playButton.classList.add("btn", "btn-sm", "btn-success", "mx-2");
-                playButton.textContent = "Tocar";
-                playButton.onclick = function() {
-                    playMusic(]] .. music.id .. [[);
-                };
-                
-                var deleteButton = document.createElement("button");
-                deleteButton.classList.add("btn", "btn-sm", "btn-danger");
-                deleteButton.textContent = "Deletar";
-                deleteButton.onclick = function() {
-                    deleteMusic(]] .. music.id .. [[);
-                };
-                
-                buttonDiv.appendChild(playButton);
-                buttonDiv.appendChild(deleteButton);
-                
-                itemDiv.appendChild(textDiv);
-                itemDiv.appendChild(buttonDiv);
-                
-                var itemsDiv = document.querySelector(".items");
-                
-                itemsDiv.appendChild(itemDiv);
-                
-            ]]);
-        end
-    end)
+            var urlItem = document.createElement("span");
+            urlItem.textContent = "(]] .. music.url .. [[)";
+            urlItem.classList.add("text-secondary", "mx-2");
+            
+            textDiv.appendChild(textItem);
+            textDiv.appendChild(urlItem);
+            
+
+            var buttonDiv = document.createElement("div");
+            buttonDiv.classList.add("d-flex");
+            
+            var playButton = document.createElement("button");
+            playButton.classList.add("btn", "btn-sm", "btn-success", "mx-2");
+            playButton.textContent = "Tocar";
+            playButton.onclick = function() {
+                playMusic(]] .. music.id .. [[);
+            };
+            
+            var deleteButton = document.createElement("button");
+            deleteButton.classList.add("btn", "btn-sm", "btn-danger");
+            deleteButton.textContent = "Deletar";
+            deleteButton.onclick = function() {
+                deleteMusic(]] .. music.id .. [[);
+            };
+            
+            buttonDiv.appendChild(playButton);
+            buttonDiv.appendChild(deleteButton);
+            
+            itemDiv.appendChild(textDiv);
+            itemDiv.appendChild(buttonDiv);
+            
+            var itemsDiv = document.querySelector(".items");
+            
+            itemsDiv.appendChild(itemDiv);
+        ]]);
+    end
 
     showCursor(true)
 end
 
 local function closePanel()
-    destroyElement(initBrowser)
+    guiSetVisible(initBrowser, false)
     showCursor(false)
 end
 
 addEvent("toggleMusicPanel", true)
 addEventHandler("toggleMusicPanel", resourceRoot, function(musics)
-    if not isElement(initBrowser) then
+    if guiGetVisible(initBrowser) == false then
         playSoundFrontEnd(1)
         openPanel(musics)
     else
