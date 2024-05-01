@@ -5,6 +5,7 @@ Config = {
 
         nameLimitCharacters = 60;
     },
+
     radio = {
         command = "setradio",
         toggleRadio = "R",
@@ -16,7 +17,14 @@ Config = {
             multipler = 25 -- Este valor aumenta com base no volume
         },
     },
+
+    logs = {
+        debug = true,
+        discord = true,
+        discordWebhook = "https://discord.com/api/webhooks/1145092658553958500/Hzp_2B9p0s369GAOr9h34afn0VIHEHCmDh2_c5RJWD0g6sMz6hhzuRLPui5gx-792xy1",
+    }
 }
+
 --Infobox:
 function dxMsg(msg, player, type, sound)
     if (localPlayer) then

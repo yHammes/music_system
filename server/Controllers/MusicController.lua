@@ -32,7 +32,8 @@ addEventHandler("saveMusic", resourceRoot, function(name, url)
         });
 
         triggerClientEvent(client, "reloadMusicPanel", resourceRoot, Music:where('acc', getAccountName(getPlayerAccount(client))))
-            
+        
+        log(getPlayerName(client).." Salvou a musica: " .. name .. " (" .. url .. ")")
         dxMsg("Musica salva com sucesso!", client, "info", 6)
     end
 end)
@@ -41,10 +42,11 @@ addEvent("deleteMusic", true)
 addEventHandler("deleteMusic", resourceRoot, function(id)
     if (source == resourceRoot and client) then
         local music = Music:find(id);
+        log(getPlayerName(client).." Deletou a musica: " .. music.name)
         music:delete();
-        dxMsg("Musica deletada!", client, "info", 6)
-
         triggerClientEvent(client, "reloadMusicPanel", resourceRoot, Music:where('acc', getAccountName(getPlayerAccount(client))))
+        
+        dxMsg("Musica deletada!", client, "info", 6)
     end
 end)
 
@@ -53,6 +55,7 @@ addEventHandler("playMusic", resourceRoot, function(id)
     if (source == resourceRoot and client) then
         local music = Music:find(id);
         music:play(client)
+        log(getPlayerName(client).." Esta tocando: " .. music.name .. " (" .. music.url .. ")")
         dxMsg("Radio alterada com sucesso!", client, "info", 6)
     end
 end)
@@ -68,6 +71,7 @@ addEventHandler("playMusicFromURL", resourceRoot, function(url)
     
         local radio = Radio.new(veh, url);
         radio:toggle()
+        log(getPlayerName(client).." Esta tocando: " .. url)
         dxMsg("Radio alterada com sucesso!", client, "info", 6)
     end
 end)
