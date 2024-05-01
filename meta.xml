@@ -1,6 +1,8 @@
 <meta>
   <info author="yMaaster" name="Painel de musicas" description="Sistema para salvar e tocar musicas"/>
 
+  <min_mta_version server="1.6" client="1.6" />
+
   <script src="config.lua" type="shared"/>
   <script src="framework/server/class/Model.lua" type="server"/>
   <script src="framework/server/util.lua" type="server"/>
@@ -12,6 +14,7 @@
   <script src="client/Controllers/MusicController.lua" type="client" cache="false" />
   <script src="client/Controllers/RadioController.lua" type="client" cache="false" />
 
+  <script src="server/main.lua" type="server"/>
   <script src="server/util.lua" type="server"/>
   <script src="server/migrations.lua" type="server"/>
 
