@@ -1,5 +1,5 @@
 <meta>
-  <info author="yMaaster" name="SaveMusics" description="Sistema para salvar e tocar musicas"/>
+  <info author="yMaaster" name="Painel de musicas" description="Sistema para salvar e tocar musicas"/>
 
   <script src="config.lua" type="shared"/>
   <script src="framework/server/class/Model.lua" type="server"/>
@@ -7,15 +7,12 @@
   <file src="lib/bootstrap/bootstrap.min.css"/>
   <file src="lib/bootstrap/bootstrap.min.js"/>
 
-
-  <script src="client/main.lua" type="client" cache="false" />
-  <script src="client/utils.lua" type="client" cache="false" />
-
+  <script src="client/util.lua" type="client" cache="false" />
 
   <script src="client/Controllers/MusicController.lua" type="client" cache="false" />
   <script src="client/Controllers/RadioController.lua" type="client" cache="false" />
 
-  <script src="server/main.lua" type="server"/>
+  <script src="server/util.lua" type="server"/>
   <script src="server/migrations.lua" type="server"/>
 
   <script src="server/class/Radio.lua" type="server"/>
@@ -29,5 +26,4 @@
   <file src="client/ui/interface/interface.css"/>
   <file src="client/ui/interface/interface.html"/>
   <file src="client/ui/interface/interface.js"/>
-  
 </meta>
