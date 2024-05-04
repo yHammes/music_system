@@ -6,14 +6,17 @@ addEventHandler("toggleRadio_Request", resourceRoot, function(radio)
         destroyElement(radios[radio.element].sound)
         return destroyElement(radios[radio.element].corona)
     end
-    
+
     local sound = playSound3D(radio.url, 0, 0, 0, true)
     local corona = createMarker(0, 0, 0, "corona", 0.05, 255, 0, 0, 200)
     setSoundMinDistance(sound, radio.volume)
     setSoundMaxDistance(sound, radio.volume * Config.radio.distance.multipler)
     attachElements(corona, radio.element)
     attachElements(sound, radio.element)
-    radios[radio.element] = {sound = sound, corona = corona}
+    radios[radio.element] = {
+        sound = sound,
+        corona = corona
+    }
 end)
 
 addEvent("destroyRadio_Request", true)
@@ -29,11 +32,13 @@ addEventHandler("toggleVolumeRadio_Request", resourceRoot, function(radio)
     setSoundMaxDistance(radios[radio.element].sound, radio.volume * Config.radio.distance.multipler)
 end)
 
-addEventHandler("onClientSoundStream", resourceRoot, function(success, length)
-    if streamName then
-        local veh = getPedOccupiedVehicle(localPlayer)
-        if veh then
-            if radios[veh] then
+addEventHandler("onClientSoundStream", resourceRoot, function(success, _, streamName)
+    local veh = getPedOccupiedVehicle(localPlayer)
+    if veh then
+        if radios[veh] then
+            if (not success) then
+                return outputChatBox("#696969Rádio: #FF0000 URL INVALIDA!", 0, 0, 0, true)
+            elseif (streamName) then
                 outputChatBox("#696969Rádio: #22AA22 " .. streamName, 0, 0, 0, true)
             end
         end
@@ -41,7 +46,7 @@ addEventHandler("onClientSoundStream", resourceRoot, function(success, length)
 end)
 
 addEventHandler("onClientSoundChangedMeta", resourceRoot, function(streamTitle)
-    if streamTitle then
+    if (streamTitle) then
         local veh = getPedOccupiedVehicle(localPlayer)
         if veh then
             if radios[veh] then
