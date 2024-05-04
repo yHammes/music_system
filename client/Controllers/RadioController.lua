@@ -9,10 +9,12 @@ addEventHandler("toggleRadio_Request", resourceRoot, function(radio)
 
     local sound = playSound3D(radio.url, 0, 0, 0, true)
     local corona = createMarker(0, 0, 0, "corona", 0.05, 255, 0, 0, 200)
+    
     setSoundMinDistance(sound, radio.volume)
     setSoundMaxDistance(sound, radio.volume * Config.radio.distance.multipler)
     attachElements(corona, radio.element)
     attachElements(sound, radio.element)
+
     radios[radio.element] = {
         sound = sound,
         corona = corona
