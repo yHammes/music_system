@@ -45,8 +45,8 @@
                     <form onsubmit="saveMusic()">
                         <div class="modal-body">
                             <div class="d-flex flex-column gap-2">
-                                <input class="form-control" type="text" id="name" placeholder="Nome..." oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe um nome')" required>
-                                <input class="form-control" type="url" id="url" placeholder="Url..." oninput="setCustomValidity('')" oninvalid="setCustomValidity('Informe uma URL Válida!')" required>
+                                <input class="form-control" type="text" id="name" placeholder="Nome..." oninvalid="setCustomValidity('Informe um nome')" oninput="setCustomValidity('')" required>
+                                <input class="form-control" type="url" id="url" placeholder="Url..." oninvalid="setCustomValidity('Informe uma URL Válida!')" oninput="setCustomValidity('')" required>
                             </div>
                         </div>
                         <div class="d-flex justify-content-between m-3">
@@ -57,6 +57,7 @@
                 </div>
             </div>
         </div>
+        
         <span class="text-secondary small d-flex justify-content-end">by yMaaster</span>
     </div>
 
