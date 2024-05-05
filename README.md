@@ -1,4 +1,5 @@
 <h1 align="center">Music Panel</h1>
+<img align="center" src="assets/to_readme/panel_gif.gif" alt="error">
 
 ## 🔹About
 
