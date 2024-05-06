@@ -6,6 +6,12 @@
 Save and play your favorite songs with a nice dashboard interface. 
 System made for MTA (Multi Theft Auto) servers
 
+## 🔹Features
+  * Integrated sound system, play your music directly on the panel or with the classic /setradio command
+  * Save and play your favorite songs
+  * Logs in the game and Discord
+  * Configurable system
+
 ## 🔹How to use?
 
 [Download latest version](https://github.com/yHammes/music_system/releases/latest)
