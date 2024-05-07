@@ -63,6 +63,10 @@ end)
 addEvent("playMusic", true)
 addEventHandler("playMusic", resourceRoot, function(id)
     if (source == resourceRoot and client) then
+        if (not isPedInVehicle(client)) then
+            return dxMsg("Você precisa de um veiculo!", client, "error", 4);
+        end
+
         local music = Music:find(id);
         music:play(client)
         log(getPlayerName(client) .. " Esta tocando: " .. music.name .. " (" .. music.url .. ")")
@@ -74,6 +78,10 @@ addEvent("playMusicFromURL", true)
 addEventHandler("playMusicFromURL", resourceRoot, function(url)
     if (source == resourceRoot and client) then
         local veh = getPedOccupiedVehicle(client);
+        if (not veh) then
+            return dxMsg("Você precisa de um veiculo!", client, "error", 4);
+        end
+        
         local currentRadio = Radio.find(veh);
         if (currentRadio) then
             currentRadio:destroy();

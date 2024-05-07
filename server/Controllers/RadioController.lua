@@ -68,13 +68,16 @@ end)
 addCommandHandler(Config.radio.command, function(player, _, url)
     if (url) then
         local veh = getPedOccupiedVehicle(player);
-        local currentRadio = Radio.find(veh);
-        if (currentRadio) then
-            currentRadio:destroy();
+        if (veh) then
+            local currentRadio = Radio.find(veh);
+            if (currentRadio) then
+                currentRadio:destroy();
+            end
+    
+            local radio = Radio.new(veh, url);
+            radio:toggle()
+            og(getPlayerName(client) .. " Com o comando /"..Config.radio.command.." esta tocando: " .. music.name .. " (" .. music.url .. ")")
+            dxMsg("Radio alterada com sucesso!", player, "info", 6)
         end
-
-        local radio = Radio.new(veh, url);
-        radio:toggle()
-        dxMsg("Radio alterada com sucesso!", player, "info", 6)
     end
 end)
