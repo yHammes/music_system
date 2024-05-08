@@ -28,3 +28,5 @@ Lastly, type /start music_system
 ## 🔹Credits
 
 This system was created by [yMaaster](https://github.com/yHammes).
+
+For questions or support, you can contact me on Discord at **ymaaster** or in my [group](https://discord.gg/uVPrRRBnvh).
