@@ -34,10 +34,14 @@ function dxMsg(msg, player, type, sound)
 end
 
 --[[
-    Sistema para salvar e tocar musicas na radio dos veiculos
+    Sistema para salvar e tocar musicas na radio dos veiculos. Para duvidas ou suporte você pode me chamar no Discord: ymaaster
 
-    Autor: yMaaster
-    Contato: ymaaster, Maaster#0001 ou https://discord.gg/wMkcasT
-    
-    Github repository: https://github.com/yHammes/music_system
+    * Autor: yMaaster
+
+    * Contato:
+        - Discord: ymaaster
+        - Github: https://github.com/yHammes
+
+        - Encomendas de resources: https://discord.gg/uVPrRRBnvh
+        - Meu servidor (GFB): https://discord.gg/wMkcasT
 ]]
