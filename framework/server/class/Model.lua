@@ -4,13 +4,14 @@ Model.__index = Model
 local instances = {}
 
 function Model.new(data, model)
-    setmetatable(data, model);
+    setmetatable(data, {__index = model});
 
     return data;
 end
 
 function Model:create(data)
     data.created_at = now();
+    data.updated_at = now();
 
     local model = Model.new(data, self)
     local columns, placeholders = model:getColumnsForCreate(data)
@@ -23,8 +24,13 @@ function Model:create(data)
 end
 
 function Model:update(data)
+    data.updated_at = now();
+
     local columns = self:getColumnsForUpdate(data)
-    dbExec(db, "UPDATE `" .. self.db_table .. "` SET " .. columns .. " WHERE `id`=?", unpack(self:getValues(data)), self.id)
+    local values = {unpack(self:getValues(data))}
+    table.insert(values, self.id)
+    
+    dbExec(db, "UPDATE `" .. self.db_table .. "` SET " .. columns .. " WHERE `id`=?", unpack(values))
 end
 
 function Model:delete()
@@ -32,18 +38,9 @@ function Model:delete()
     dbExec(db, "DELETE FROM `" .. self.db_table .. "` WHERE `id`=?", self.id)
 end
 
-function Model:cleanInstance(id)
-    instances[id] = nil;
-end
-
-function Model:find(id)
-    -- if (instances[tonumber(id)]) then
-    --     return instances[tonumber(id)];
-    -- end
-
-    local data = dbPoll(dbQuery(db, "SELECT * FROM " .. self.db_table .. " WHERE `id`=?", id), -1)[1]
-    return Model.new(data, self);
-end
+-- function Model:cleanInstance(id)
+--     instances[id] = nil;
+-- end
 
 function Model:where(find, value)
     local modelsData = dbPoll(dbQuery(db, "SELECT * FROM " .. self.db_table .. " WHERE `"..find.."`=?", value), -1)
@@ -55,6 +52,16 @@ function Model:where(find, value)
     return models;
 end
 
+function Model:find(id)
+    -- if (instances[tonumber(id)]) then
+    --     return instances[tonumber(id)];
+    -- end
+
+    local data = dbPoll(dbQuery(db, "SELECT * FROM " .. self.db_table .. " WHERE `id`=?", id), -1)[1]
+    return Model.new(data, self);
+end
+
+-- Abaixo são metodos obtem o formata dados para as consultas
 -- Formata duas strings (columns e placeholders) para usar no query do CREATE
 function Model:getColumnsForCreate(data)
     local columns = "";
