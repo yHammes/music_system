@@ -7,6 +7,7 @@
 
 Save and play your favorite songs with a nice dashboard interface. 
 System made for MTA (Multi Theft Auto) servers.
+  * Video demonstration: https://youtu.be/uJQk7LxrTSY
 
 ## 🔹Features
   * Integrated sound system, play your music directly on the panel or with the classic /setradio command.
