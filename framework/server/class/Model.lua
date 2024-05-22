@@ -1,7 +1,7 @@
 Model = {}
 Model.__index = Model
 
-local instances = {}
+-- local instances = {}
 
 function Model.new(data, model)
     setmetatable(data, {__index = model});
@@ -15,6 +15,7 @@ function Model:create(data)
 
     local model = Model.new(data, self)
     local columns, placeholders = model:getColumnsForCreate(data)
+    iprint("INSERT INTO `" .. model.db_table .. "` (" .. columns .. ") VALUES(" .. placeholders .. ")", unpack(model:getValues(data)))
     dbExec(db, "INSERT INTO `" .. model.db_table .. "` (" .. columns .. ") VALUES(" .. placeholders .. ")", unpack(model:getValues(data)))
 
     model.id = dbPoll(dbQuery(db, "SELECT last_insert_rowid() as lastID"), -1)[1]['lastID'];
@@ -93,11 +94,13 @@ end
 -- Pega os valores com base no fillable
 function Model:getValues(data)
     local values = {}
-    for _, value in pairs(data) do
-        if type(value) == "table" then
-            value = toJSON(value);
+    for index, value in pairs(data) do
+        if table.contains(self.fillable, index) then
+            if type(value) == "table" then
+                value = toJSON(value);
+            end
+            table.insert(values, value)
         end
-        table.insert(values, value)
     end
     return values;
 end
