@@ -24,10 +24,29 @@ local function setRadioBind(player)
     end);
 end
 
+local function setVolumeBinds(player)
+    local function toggleVolume(player, key)
+        local veh = getPedOccupiedVehicle(player)
+        if veh then
+            local radio = Radio.find(veh);
+            if radio then
+                if key == "mouse_wheel_up" then
+                    radio:toggleVolume(player, "up")
+                else
+                    radio:toggleVolume(player, "down")
+                end
+            end
+        end
+    end
+    bindKey(source, "mouse_wheel_up", "down", toggleVolume);
+    bindKey(source, "mouse_wheel_down", "down", toggleVolume)
+end
+
 addEventHandler("onPlayerResourceStart", root, function(resource)
     if (resource == getThisResource()) then
         startAllRadios(source)
         setRadioBind(source)
+        setVolumeBinds(source)
     end
 end)
 
@@ -42,26 +61,6 @@ addEventHandler("onElementDestroy", root, function()
     local radio = Radio.find(source)
     if radio then
         radio:destroy();
-    end
-end)
-
-addEventHandler("onPlayerResourceStart", root, function(resource)
-    if (resource == getThisResource()) then
-        local function toggleVolume(player, key)
-            local veh = getPedOccupiedVehicle(player)
-            if veh then
-                local radio = Radio.find(veh);
-                if radio then
-                    if key == "mouse_wheel_up" then
-                        radio:toggleVolume(player, "up")
-                    else
-                        radio:toggleVolume(player, "down")
-                    end
-                end
-            end
-        end
-        bindKey(source, "mouse_wheel_up", "down", toggleVolume);
-        bindKey(source, "mouse_wheel_down", "down", toggleVolume)
     end
 end)
 
