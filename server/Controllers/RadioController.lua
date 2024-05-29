@@ -75,7 +75,7 @@ addCommandHandler(Config.radio.command, function(player, _, url)
     
             local radio = Radio.new(veh, url);
             radio:toggle()
-            og(getPlayerName(client) .. " Com o comando /"..Config.radio.command.." esta tocando: " .. music.name .. " (" .. music.url .. ")")
+            log(getPlayerName(player) .. " Com o comando /"..Config.radio.command.." esta tocando: " .. url)
             dxMsg("Radio alterada com sucesso!", player, "info", 6)
         end
     end
